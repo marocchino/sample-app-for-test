@@ -9,7 +9,7 @@
 ### Q2. 次のコードを読んで出力を解答してください。また、その理由を説明してください。
 
 ```js
-for(var i = 0; i < 10; i++) {
+for(let i = 0; i < 10; i++) {
   setTimeout(function(){
     console.log(i);
   }, 1);
