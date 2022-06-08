@@ -10,11 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_06_08_052040) do
+ActiveRecord::Schema[7.0].define(version: 2022_06_08_054600) do
+  create_table "comments", force: :cascade do |t|
+    t.integer "store_id", null: false
+    t.integer "product_id", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_comments_on_product_id"
+    t.index ["store_id"], name: "index_comments_on_store_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.integer "store_id", null: false
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["store_id"], name: "index_products_on_store_id"
+  end
+
   create_table "stores", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "comments", "products"
+  add_foreign_key "comments", "stores"
+  add_foreign_key "products", "stores"
 end
